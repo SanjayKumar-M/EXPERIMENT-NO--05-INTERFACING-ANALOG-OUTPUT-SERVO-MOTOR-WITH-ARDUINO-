@@ -36,17 +36,6 @@ An external controller (such as the Arduino) tells the servo where to go with a 
  ![image](https://user-images.githubusercontent.com/36288975/163544513-ca497421-e6ba-4f91-871f-5cfba77f22a8.png)
 
 
-### Figure-03 SERVO MOTOR OVERVIEW 
-
- 
-
-
- 
-
-
-
-
-
 CIRCUIT DIAGRAM
  
  
@@ -70,32 +59,31 @@ CIRCUIT DIAGRAM
  ``` python
  #include <Servo.h>
 
-Servo myservo; 
-               
+Servo myservo;
+int value;
+double angle;
 
-void setup()
-{
-  myservo.attach(9);
+void setup(){
+	Serial.begin(9600);
+  	myservo.attach(0);
+	
 }
 
-void loop()
-{
-  myservo.write(45);
-  delay(1000); 
-  myservo.write(90);
-  delay(1000);
-  myservo.write(135);
-  delay(1000);
-  myservo.write(180); 
+void loop(){
+	value = analogRead(A0);
+	angle = map(value, 0, 1023,0, 180);
+    Serial.println(angle);
+  	myservo.write(angle);
+  	delay(15);
 }
-  
  
  ```
 
 
+### OUTPUT:
 
 
-
+![image](https://raw.githubusercontent.com/SanjayKumar-M/Introduction-To-Rootics/main/Screenshot%20(29).png)
 
 
 
